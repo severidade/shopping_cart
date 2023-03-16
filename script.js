@@ -12,7 +12,7 @@ const sumAllPrices = () => {
   const currentCartItem = document.querySelectorAll('.cart__item');
   const priceElement = document.querySelector('.total-price');
   currentCartItem.forEach((item) => { totalPrice += parseFloat(item.innerText.split('$')[1]); });
-  priceElement.innerText = `${totalPrice}`;
+  priceElement.innerText = `${totalPrice.toFixed(2)}`;
   // coloquei o ToFixed para limitar a duas casas decimais o valor .toFixed()
   // .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
 };
@@ -70,7 +70,7 @@ function createCartItemElement({ sku, name, salePrice }) {
 
 async function addProductToCart(productID) {
   const itemData = await fetchItem(productID);
-  console.log(itemData);
+  console.log(itemData.thumbnail);
   const sectionItem = document.querySelector('.cart__items');
   const { id: sku, title: name, price: salePrice } = itemData;
   const chartItem = createCartItemElement({ sku, name, salePrice });
@@ -116,7 +116,7 @@ async function serchProducts(product) { // essa e uma funcao assincrona
 }
 
 window.onload = () => { 
-  serchProducts('Boneco Funko');
+  serchProducts('bolha de babao pistola brinquedo');
   onLoadInfo();
   emptyCart();
   totalItem();
