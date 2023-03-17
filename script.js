@@ -3,7 +3,6 @@ function totalItem() {
   const totalPrice = document.querySelector('.total');
   const span = document.createElement('span');
   span.className = 'total-price';
-  // div.innerHTML = `<p> Subtotal ${'total'} </p>`;
   totalPrice.appendChild(span);
 }
 
@@ -13,8 +12,6 @@ const sumAllPrices = () => {
   const priceElement = document.querySelector('.total-price');
   currentCartItem.forEach((item) => { totalPrice += parseFloat(item.innerText.split('$')[1]); });
   priceElement.innerText = `${totalPrice.toFixed(2)}`;
-  // coloquei o ToFixed para limitar a duas casas decimais o valor .toFixed()
-  // .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
 };
 
 function onLoadInfo() {
@@ -115,10 +112,26 @@ async function serchProducts(product) { // essa e uma funcao assincrona
   load.remove();
 }
 
+// function searchNewProducts() {
+//   const form = document.getElementById('search_new_product');
+//   const campo = document.getElementById('search_item');
+
+//   form.addEventListener('submit', function (e) {
+//     // impede o envio do form
+//     e.preventDefault();
+
+//     // alerta o valor do campo
+//     alert(campo.value);
+//     const pesquisa = campo.value;
+//     console.log(pesquisa);
+//     serchProducts(pesquisa);
+//   });
+// }
+
 window.onload = () => { 
-  serchProducts('bolha de babao pistola brinquedo');
+  serchProducts('monstera');
   onLoadInfo();
   emptyCart();
   totalItem();
-  // sumAllPrices(); isso acho que vai ter que ficar aqui para quando carregar do local storage
+  // searchNewProducts();
 };

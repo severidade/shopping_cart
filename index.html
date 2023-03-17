@@ -18,7 +18,32 @@
       <div class="cart_title">Carrinho de compras</div>
     </header>
     <section class="container">
-      <section class="items"></section>
+      <section class="products">
+        <div class="container_search">
+          <!-- <form class="form_search" action="">
+            <label htmlFor="search_item">
+              O que você precisa?
+              <input
+                type="text"
+                id="search_item"
+              />
+            </label>
+            <button id="search_button"> Procurar </button>
+          </form> -->
+          <!-- <form action="">
+            <input type="text" name="name" id="name" placeholder="O que você precisa?">
+            <input type="submit" id="send"value="Pesquiar">
+          </form> -->
+          <form id="search_new_product" class="search_new_product">
+            <input type="text" id="search_item" placeholder="O que você precisa?">
+            <input type="submit" value="Enviar">
+          </form>
+          <div class="search_for">
+            <p>Resultados da busca para <strong>Monstera</strong></p>
+          </div>
+        </div>
+        <section class="items"></section>
+      </section>
       <section class="cart">
         <!-- <span class="cart__title">Carrinho de compras</span>   -->
         <button class="empty-cart">Esvaziar carrinho</button>
