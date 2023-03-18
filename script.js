@@ -40,6 +40,14 @@ function cartItemClickListener(event) {
 }
 
 // cria os cards dos produtos
+
+function createCustomElement(element, className, innerText) {
+  const e = document.createElement(element);
+  e.className = className;
+  e.innerText = innerText;
+  return e;
+}
+
 function createProductImageElement(imageSource) {
   const lowQltyImageURL = imageSource.split('-');
   const highQltyImageURL = [...lowQltyImageURL[0], '-', ...lowQltyImageURL[1], '-J.jpg'].join('');
@@ -54,29 +62,20 @@ function createProductImageElement(imageSource) {
   return container;
 }
 
-function createCustomElement(element, className, innerText) {
-  const e = document.createElement(element);
-  e.className = className;
-  e.innerText = innerText;
-  return e;
-}
-
 function createCartItemElement({ name, salePrice, imageSource }) {
   const li = document.createElement('li');
-    li.className = 'cart__item';
-
-  // const p = document.createElement('p');
-  //   li.appendChild(p);
-    li.innerText = `NAME: ${name} | PRICE: $${salePrice}`;
-    li.appendChild(createProductImageElement(imageSource));
- 
-    li.addEventListener('click', cartItemClickListener);
+  const p = document.createElement('p');
+  
+  li.className = 'cart__item';
+  li.appendChild(p);
+  p.innerText = `${name} | PRICE: $${salePrice}`;
+  li.appendChild(createProductImageElement(imageSource));
+  li.addEventListener('click', cartItemClickListener);
   return li;
 }
 
 async function addProductToCart(productID) {
   const itemData = await fetchItem(productID);
-  console.log(itemData.thumbnail);
   const sectionItem = document.querySelector('.cart__items');
   const { id: sku, title: name, price: salePrice, thumbnail: imageSource } = itemData;
   const chartItem = createCartItemElement({ sku, name, salePrice, imageSource });
@@ -100,14 +99,11 @@ function createProductItemElement({ sku, name, image, salePrice }) {
   return section;
 }
 
-async function serchProducts(product) { // essa e uma funcao assincrona
-  const searchData = await fetchProducts(product); // chamada da funcao fetchproduts.js
-  const sectionItems = document.querySelector('.items'); // Target HTMl
-  console.log(searchData.results[0]);
+async function searchProducts(product) {
+  const searchData = await fetchProducts(product);
+  const sectionItems = document.querySelector('.items');
   
-  searchData.results.forEach((item) => { // results é palcançar os dados no array
-    // const newImageQuality = item.thumbnail.split('-');
-    // const imageQuality = [...newImageQuality[0], '-', ...newImageQuality[1], '-J.jpg'].join('');
+  searchData.results.forEach((item) => {
     const itemObject = {
       sku: item.id,
       name: item.title,
@@ -121,26 +117,9 @@ async function serchProducts(product) { // essa e uma funcao assincrona
   load.remove();
 }
 
-// function searchNewProducts() {
-//   const form = document.getElementById('search_new_product');
-//   const campo = document.getElementById('search_item');
-
-//   form.addEventListener('submit', function (e) {
-//     // impede o envio do form
-//     e.preventDefault();
-
-//     // alerta o valor do campo
-//     alert(campo.value);
-//     const pesquisa = campo.value;
-//     console.log(pesquisa);
-//     serchProducts(pesquisa);
-//   });
-// }
-
 window.onload = () => { 
-  serchProducts('Monstera');
+  searchProducts('monstera');
   onLoadInfo();
   emptyCart();
   totalItem();
-  // searchNewProducts();
 };

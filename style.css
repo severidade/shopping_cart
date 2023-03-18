@@ -94,6 +94,7 @@ body {
   flex-grow: 1;
   padding: 10px;
   text-align: left;
+  overflow: auto;
 }
 
 .item .item__image {
@@ -150,6 +151,17 @@ body {
   font-size: 18px;
 }
 
+.cart__items {
+
+  /* display: flex; */
+
+  /* flex-direction: column-reverse; */
+  overflow: auto;
+  height: 560px;
+
+  /* justify-content: flex-end; */
+}
+
 /* severo conteudo */
 header {
   width: 100%;
@@ -177,6 +189,8 @@ header {
 
 .cart_container {
   padding: 40px 0;
+  position: sticky;
+  top: 0;
 }
 
 .cart__items .container_img {
@@ -185,7 +199,6 @@ header {
   overflow: hidden;
   border-radius: 100%;
 }
-
 
 .item__title , .cart__item , .total {
   font-size: 15px;
@@ -284,3 +297,33 @@ h1 strong {
   left: 50%;
   transform: translate(-50%, -50%);
 } */
+
+/* ===== Scrollbar CSS ===== */
+
+/* Firefox */
+
+/* ===== Scrollbar CSS ===== */
+
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #000 #e60000;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #fff0;
+  border: solid 1px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 0;
+  height: 100px;
+
+  /* border: 3px solid #fff; */
+}
