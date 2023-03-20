@@ -1,6 +1,6 @@
 const shoppingCartBtn = document.querySelector('#shopping_cart');
+const cartItems = document.querySelector('.cart__items');
 
-/* eslint-disable sonarjs/no-duplicate-string */
 function onLoadInfo() {
   const pageLoad = document.querySelector('.items');
   const p = document.createElement('p');
@@ -28,18 +28,16 @@ const sumAllPrices = () => {
 };
 
 function updateCartItemsCount() {
-  // const shoppingCartBtn = document.querySelector('#shopping_cart');
-  const currentCartItems = document.querySelector('.cart__items');
-  const itemCount = currentCartItems.children.length;
-  shoppingCartBtn.innerText = `Carrinho (${itemCount})`;
+  const itemCount = cartItems.children.length;
+  shoppingCartBtn.innerText = `Carrinho de compras ( ${itemCount} )`;
 }
 
 function emptyCart() {
   const emptyButton = document.querySelector('.empty-cart');
-  const currentList = document.querySelector('.cart__items');
   emptyButton.addEventListener('click', () => {
-    currentList.innerHTML = '';
+    cartItems.innerHTML = '';
     sumAllPrices();
+    updateCartItemsCount();
   });
 }
 
@@ -87,10 +85,9 @@ function createCartItemElement({ name, salePrice, imageSource }) {
 
 async function addProductToCart(productID) {
   const itemData = await fetchItem(productID);
-  const sectionItem = document.querySelector('.cart__items');
   const { id: sku, title: name, price: salePrice, thumbnail: imageSource } = itemData;
   const chartItem = createCartItemElement({ sku, name, salePrice, imageSource });
-  sectionItem.appendChild(chartItem);
+  cartItems.appendChild(chartItem);
   updateCartItemsCount();
 }
 
@@ -132,6 +129,7 @@ async function searchProducts(product) {
 window.onload = async () => { 
   searchProducts('monstera');
   onLoadInfo();
+  updateCartItemsCount();
   emptyCart();
   totalItem();
 };
