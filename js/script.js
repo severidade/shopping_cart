@@ -29,7 +29,8 @@ const sumAllPrices = () => {
 
 function updateCartItemsCount() {
   const itemCount = cartItems.children.length;
-  shoppingCartBtn.innerText = `Carrinho de compras ( ${itemCount} )`;
+  const novo = document.querySelector('#shopping_cart > span');
+  novo.innerText = `${itemCount}`;
 }
 
 function emptyCart() {

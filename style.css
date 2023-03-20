@@ -27,13 +27,13 @@ header {
   align-items: center;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
+  padding: 0 20px;
 }
 
 h1 {
   font-family: 'Work Sans', sans-serif;
   font-weight: 300;
   font-size: 29px;
-  padding-left: 20px;
 }
 
 p , span {
@@ -50,6 +50,35 @@ p , span {
 .products {
   border: solid 2px tomato;
   padding-top: 90px;
+}
+
+#shopping_cart {
+  background: url(./img/icon/shopping-bag.svg) no-repeat left center;
+  background-size: 50%;
+  width: 60px;
+  height: 40px;
+  border: none;
+  position: relative;
+}
+
+#shopping_cart > p {
+  text-indent: -1000px;
+}
+
+#shopping_cart > span {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: #0a764f;
+  border-radius: 100%;
+  font-weight: 700;
+  color: white;
 }
 
 #cart {
