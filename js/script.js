@@ -1,3 +1,6 @@
+const shoppingCartBtn = document.querySelector('#shopping_cart');
+
+/* eslint-disable sonarjs/no-duplicate-string */
 function onLoadInfo() {
   const pageLoad = document.querySelector('.items');
   const p = document.createElement('p');
@@ -24,6 +27,13 @@ const sumAllPrices = () => {
   priceElement.innerText = `${totalPrice.toFixed(2)}`;
 };
 
+function updateCartItemsCount() {
+  // const shoppingCartBtn = document.querySelector('#shopping_cart');
+  const currentCartItems = document.querySelector('.cart__items');
+  const itemCount = currentCartItems.children.length;
+  shoppingCartBtn.innerText = `Carrinho (${itemCount})`;
+}
+
 function emptyCart() {
   const emptyButton = document.querySelector('.empty-cart');
   const currentList = document.querySelector('.cart__items');
@@ -37,6 +47,7 @@ function cartItemClickListener(event) {
   const li = event.target;
   li.remove();
   sumAllPrices();
+  updateCartItemsCount();
 }
 
 // cria os cards dos produtos
@@ -80,6 +91,7 @@ async function addProductToCart(productID) {
   const { id: sku, title: name, price: salePrice, thumbnail: imageSource } = itemData;
   const chartItem = createCartItemElement({ sku, name, salePrice, imageSource });
   sectionItem.appendChild(chartItem);
+  updateCartItemsCount();
 }
 
 function createProductItemElement({ sku, name, image, salePrice }) {
@@ -93,7 +105,7 @@ function createProductItemElement({ sku, name, image, salePrice }) {
   const buttonItem = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
   buttonItem.addEventListener('click', async () => {
     await addProductToCart(sku);
-    await sumAllPrices();
+    // await sumAllProducts();
   });
   section.appendChild(buttonItem);
   return section;
@@ -117,7 +129,7 @@ async function searchProducts(product) {
   load.remove();
 }
 
-window.onload = () => { 
+window.onload = async () => { 
   searchProducts('monstera');
   onLoadInfo();
   emptyCart();
