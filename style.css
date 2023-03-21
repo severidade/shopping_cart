@@ -129,8 +129,6 @@ h1 {
   text-indent: 30px;
   font-family: 'Titillium Web', sans-serif;
   font-size: 18px;
-
-  /* text-transform: uppercase; */
   font-weight: 700;
   z-index: 3;
 }
@@ -198,7 +196,7 @@ h1 {
   border: none;
   height: 80px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
   color: white;
   font-size: 18px;
   font-family: 'Titillium Web', sans-serif;
