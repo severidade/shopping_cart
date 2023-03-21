@@ -91,8 +91,6 @@ h1 {
 }
 
 #cart {
-
-  /* background-color: #0a764f; */
   background: var(--main-bg-color) url(img/noisebg.png);
   position: fixed;
   top: 0;
@@ -122,13 +120,18 @@ h1 {
   width: 30px;
   height: 30px;
   position: absolute;
-  right: 13px;
+  left: 13px;
   top: 10px;
-  background-color: black;
+  background: url(./img/icon/close.png) no-repeat center;
+  background-size: 40%;
   border: none;
   border-radius: 100%;
-  overflow: hidden;
-  text-indent: -1000px;
+  text-indent: 30px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 18px;
+
+  /* text-transform: uppercase; */
+  font-weight: 700;
   z-index: 3;
 }
 
