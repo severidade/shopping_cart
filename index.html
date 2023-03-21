@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>🛍️ - Carrinho de compras</title>
+    <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="./helpers/fetchItem.js" defer></script>
     <script src="./helpers/fetchProducts.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="./js/script.js" defer></script>
     <script src="./helpers/saveCartItems.js" defer></script>
     <script src="./helpers/getSavedCartItems.js" defer></script>
   </head>
   <body>
     <header>
       <h1><strong>trybe</strong>shopping</h1>
-      <div class="cart_title">Carrinho de compras</div>
+      <button id="shopping_cart" name="shopping cart"><p>Carrinho de compras</p><span></span></button>
     </header>
     <section class="container">
       <section class="products">
@@ -44,15 +45,17 @@
         </div>
         <section class="items"></section>
       </section>
-      <section class="cart">
+      <section id="cart">
+        <button id="shopping_cart_close">Fechar</button>
         <!-- <span class="cart__title">Carrinho de compras</span>   -->
         <div class="cart_container">
-          <button class="empty-cart">Esvaziar carrinho</button>
           <ol class="cart__items">
           </ol>
           <div class="total">Total: <span>R$</span></div>
+          <button class="empty-cart">Esvaziar carrinho</button>
         </div>
       </section>
     </section>
+    <script src="./js/shopping_cart.js"></script>
   </body>
 </html>

@@ -1,3 +1,6 @@
+const shoppingCartBtn = document.querySelector('#shopping_cart');
+const cartItems = document.querySelector('.cart__items');
+
 function onLoadInfo() {
   const pageLoad = document.querySelector('.items');
   const p = document.createElement('p');
@@ -24,12 +27,18 @@ const sumAllPrices = () => {
   priceElement.innerText = `${totalPrice.toFixed(2)}`;
 };
 
+function updateCartItemsCount() {
+  const itemCount = cartItems.children.length;
+  const novo = document.querySelector('#shopping_cart > span');
+  novo.innerText = `${itemCount}`;
+}
+
 function emptyCart() {
   const emptyButton = document.querySelector('.empty-cart');
-  const currentList = document.querySelector('.cart__items');
   emptyButton.addEventListener('click', () => {
-    currentList.innerHTML = '';
+    cartItems.innerHTML = '';
     sumAllPrices();
+    updateCartItemsCount();
   });
 }
 
@@ -37,6 +46,7 @@ function cartItemClickListener(event) {
   const li = event.target;
   li.remove();
   sumAllPrices();
+  updateCartItemsCount();
 }
 
 // cria os cards dos produtos
@@ -76,16 +86,15 @@ function createCartItemElement({ name, salePrice, imageSource }) {
 
 async function addProductToCart(productID) {
   const itemData = await fetchItem(productID);
-  const sectionItem = document.querySelector('.cart__items');
   const { id: sku, title: name, price: salePrice, thumbnail: imageSource } = itemData;
   const chartItem = createCartItemElement({ sku, name, salePrice, imageSource });
-  sectionItem.appendChild(chartItem);
+  cartItems.appendChild(chartItem);
+  updateCartItemsCount();
 }
 
 function createProductItemElement({ sku, name, image, salePrice }) {
   const section = document.createElement('section');
   section.className = 'item';
-
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('span', 'item__title', name));
@@ -102,7 +111,7 @@ function createProductItemElement({ sku, name, image, salePrice }) {
 async function searchProducts(product) {
   const searchData = await fetchProducts(product);
   const sectionItems = document.querySelector('.items');
-  
+
   searchData.results.forEach((item) => {
     const itemObject = {
       sku: item.id,
@@ -117,9 +126,10 @@ async function searchProducts(product) {
   load.remove();
 }
 
-window.onload = () => { 
-  searchProducts('monstera');
+window.onload = async () => { 
+  searchProducts('maranta');
   onLoadInfo();
+  updateCartItemsCount();
   emptyCart();
   totalItem();
 };
