@@ -28,6 +28,7 @@ header {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   padding: 0 20px;
+  z-index: 1;
 }
 
 h1 {
@@ -42,13 +43,20 @@ p , span {
   font-weight: 400;
 }
 
+.item__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 
 .container {
   overflow: hidden;
 }
 
 .products {
-  border: solid 2px tomato;
+
+  /* border: solid 2px tomato; */
   padding-top: 90px;
 }
 
@@ -85,14 +93,13 @@ p , span {
   background-color: #0a764f;
   position: absolute;
   top: 0;
-  right: 0;
   left: 0;
-  bottom: 0;
   width: 100%;
   height: 100vh;
   transform: translateX(-100%);
   overflow: auto;
   transition: transform ease-in-out 0.5s;
+  z-index: 2;
 }
 
 #cart.active {
@@ -100,20 +107,119 @@ p , span {
   position: fixed;
 }
 
-button#shopping_cart_close {
-  width: 100%;
-  height: 50px;
+.cart_container {
+  padding: 20px;
 }
 
-/* estilos temporários */
-.container_img {
+#shopping_cart_close {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+/* Container Produtos */
+.items {
+  display: grid;
+  grid-gap: 0;
+  gap: 5px;
+  grid-auto-rows: 300px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  padding: 5px;
+}
+
+.item {
+  border: 1px solid var(--main-bg-color2);
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 130px 1fr 50px;
+  height: auto;
   width: 100%;
-  height: 200px;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px var(--main-bg-color2);
+  position: relative;
+  padding: 10px;
+}
+
+.item .item__sku {
+  display: none;
+}
+
+.item .container_img {
+  width: 100%;
+  height: 130px;
   overflow: hidden;
 }
 
-.item__image {
-  width: 100%;
+.item .item__title {
+  text-align: left;
+  overflow: auto;
   height: 100%;
-  object-fit: contain;
+}
+
+.item .item__add {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 100%;
+  border: none;
+  overflow: hidden;
+  text-indent: -1000px;
+  background: var(--primary-color2) url(./img/icon/comprar.png);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.priceProduct {
+  font-family: 'Vollkorn', serif;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--dark-collor);
+  font-size: 24px;
+  position: relative;
+  padding-right: 40px;
+  padding-top: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.priceProduct:before {
+  content: 'R$';
+  position: absolute;
+  font-size: 12px;
+  transform: translate(-16px, 6px);
+}
+
+
+
+/* ===== Scrollbar CSS ===== */
+
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--dark-collor);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--dark-collor);
+  border: solid 1px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--dark-collor);
+  border-radius: 0;
+  height: 100px;
 }

@@ -95,7 +95,6 @@ async function addProductToCart(productID) {
 function createProductItemElement({ sku, name, image, salePrice }) {
   const section = document.createElement('section');
   section.className = 'item';
-
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('span', 'item__title', name));
@@ -103,7 +102,7 @@ function createProductItemElement({ sku, name, image, salePrice }) {
   const buttonItem = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
   buttonItem.addEventListener('click', async () => {
     await addProductToCart(sku);
-    // await sumAllProducts();
+    await sumAllPrices();
   });
   section.appendChild(buttonItem);
   return section;
@@ -112,7 +111,7 @@ function createProductItemElement({ sku, name, image, salePrice }) {
 async function searchProducts(product) {
   const searchData = await fetchProducts(product);
   const sectionItems = document.querySelector('.items');
-  
+
   searchData.results.forEach((item) => {
     const itemObject = {
       sku: item.id,
@@ -128,7 +127,7 @@ async function searchProducts(product) {
 }
 
 window.onload = async () => { 
-  searchProducts('monstera');
+  searchProducts('Monstera');
   onLoadInfo();
   updateCartItemsCount();
   emptyCart();
