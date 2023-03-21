@@ -127,7 +127,7 @@ async function searchProducts(product) {
 }
 
 window.onload = async () => { 
-  searchProducts('Monstera');
+  searchProducts('maranta');
   onLoadInfo();
   updateCartItemsCount();
   emptyCart();
