@@ -4,7 +4,7 @@ const menuControlClose = document.getElementById('shopping_cart_close');
 
 function toggleMenu() {
   document.getElementById('cart').classList.toggle('active');
-  // document.getElementsByTagName("body")[0].classList.toggle("boqueiaScroll");
+  document.getElementsByTagName('body')[0].classList.toggle('boqueiaScroll');
 }
 
 // Escutadores
