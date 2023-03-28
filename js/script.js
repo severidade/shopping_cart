@@ -1,4 +1,4 @@
-// const shoppingCartBtn = document.querySelector('#shopping_cart');
+// const shoppingCartBtn = document.querySelector('#shopping_cart');m
 const cartItems = document.querySelector('.cart__items');
 const sectionItems = document.querySelector('.items');
 
@@ -140,6 +140,9 @@ function searchNewProducts() {
     const pesquisa = campo.value;
     newSearch.innerHTML = pesquisa;
     searchProducts(pesquisa);
+    if (campo.value !== '') {
+      campo.value = '';
+    }
   });
 }
 
