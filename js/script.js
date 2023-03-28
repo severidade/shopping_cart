@@ -1,5 +1,8 @@
-const shoppingCartBtn = document.querySelector('#shopping_cart');
+// const shoppingCartBtn = document.querySelector('#shopping_cart');
 const cartItems = document.querySelector('.cart__items');
+const sectionItems = document.querySelector('.items');
+
+// const form = document.querySelector('#search_new_product');
 
 function onLoadInfo() {
   const pageLoad = document.querySelector('.items');
@@ -110,7 +113,7 @@ function createProductItemElement({ sku, name, image, salePrice }) {
 
 async function searchProducts(product) {
   const searchData = await fetchProducts(product);
-  const sectionItems = document.querySelector('.items');
+  // const sectionItems = document.querySelector('.items');
 
   searchData.results.forEach((item) => {
     const itemObject = {
@@ -122,8 +125,25 @@ async function searchProducts(product) {
     const productItem = createProductItemElement(itemObject);
     sectionItems.appendChild(productItem);
   });
+
   const load = document.querySelector('.loading');
   load.remove();
+}
+
+function searchNewProducts() {
+    const form = document.querySelector('#search_new_product');
+    const campo = document.getElementById('search_item');
+    const newSearch = document.getElementById('search');
+  
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // impede o envio do form
+      sectionItems.innerHTML = '';
+      onLoadInfo();
+      const pesquisa = campo.value;
+      newSearch.innerHTML = pesquisa;
+      searchProducts(pesquisa);
+      console.log(newSearch);
+    });
 }
 
 window.onload = async () => { 
@@ -132,4 +152,5 @@ window.onload = async () => {
   updateCartItemsCount();
   emptyCart();
   totalItem();
+  searchNewProducts();
 };
