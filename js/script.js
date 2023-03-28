@@ -12,14 +12,14 @@ function onLoadInfo() {
   pageLoad.appendChild(p);
 }
 
-// Cria o conteiner para  inserir a soma
+// Cria o container para  inserir a soma
 function totalItem() {
-  const inicial_value = 0.00;
+  const inicialValue = 0.00;
   const totalPrice = document.querySelector('.total');
   const span = document.createElement('span');
   span.className = 'total-price';
   totalPrice.appendChild(span);
-  span.innerText = `${inicial_value.toFixed(2)}`;
+  span.innerText = `${inicialValue.toFixed(2)}`;
 }
 
 const sumAllPrices = () => {
@@ -53,7 +53,6 @@ function cartItemClickListener(event) {
 }
 
 // cria os cards dos produtos
-
 function createCustomElement(element, className, innerText) {
   const e = document.createElement(element);
   e.className = className;
@@ -113,7 +112,6 @@ function createProductItemElement({ sku, name, image, salePrice }) {
 
 async function searchProducts(product) {
   const searchData = await fetchProducts(product);
-  // const sectionItems = document.querySelector('.items');
 
   searchData.results.forEach((item) => {
     const itemObject = {
@@ -131,19 +129,18 @@ async function searchProducts(product) {
 }
 
 function searchNewProducts() {
-    const form = document.querySelector('#search_new_product');
-    const campo = document.getElementById('search_item');
-    const newSearch = document.getElementById('search');
-  
-    form.addEventListener('submit', function (e) {
-      e.preventDefault(); // impede o envio do form
-      sectionItems.innerHTML = '';
-      onLoadInfo();
-      const pesquisa = campo.value;
-      newSearch.innerHTML = pesquisa;
-      searchProducts(pesquisa);
-      console.log(newSearch);
-    });
+  const form = document.querySelector('#search_new_product');
+  const campo = document.getElementById('search_item');
+  const newSearch = document.getElementById('search');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // impede o envio do form carregando a página novamente
+    sectionItems.innerHTML = '';
+    onLoadInfo();
+    const pesquisa = campo.value;
+    newSearch.innerHTML = pesquisa;
+    searchProducts(pesquisa);
+  });
 }
 
 window.onload = async () => { 

@@ -34,7 +34,7 @@ header {
   align-items: center;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  padding: 0 20px;
+  padding: 0 0 0 20px;
   z-index: 1;
 }
 
@@ -207,18 +207,38 @@ h1 {
 .container_search {
   width: 100%;
   margin: auto;
-  padding: 0 5px;
+  padding: 0 27px 0 10px;
 }
 
 .search_new_product {
-  display: flex;
   gap: 10px;
 }
 
 #search_item {
   height: 50px;
-  padding: 6px;
+  width: 100%;
+  padding: 0 60px 0 6px;
   flex-grow: 1;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 17px;
+  border: 1px solid var(--main-bg-color2);
+  border-radius: 5px;
+}
+
+.enviar {
+  background: url('./img/icon/search_icon.png');
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  text-indent: -1000px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .search_for {
@@ -248,7 +268,7 @@ h1 {
   height: auto;
   width: 100%;
   align-items: center;
-  background-color: #fff;
+  background-color: white;
   box-shadow: 2px 2px 3px var(--main-bg-color2);
   position: relative;
   padding: 10px;
@@ -376,5 +396,11 @@ h1 {
   #cart {
     transform: translateX(0);
     width: 20vw;
+  }
+
+  .container_search {
+    width: 70%;
+    margin: inherit;
+    padding: 0 80px;
   }
 }
