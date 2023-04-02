@@ -42,8 +42,8 @@ function updateCartItemsCount() {
 function emptyCart() {
   const emptyButton = document.querySelector('.empty-cart');
   emptyButton.addEventListener('click', () => {
+    localStorage.clear();
     cartItems.innerHTML = '';
-    localStorage.clear(); // 🔥
     saveCartItems(cartItems.innerHTML);
     sumAllPrices();
     updateCartItemsCount();
@@ -54,8 +54,6 @@ function emptyCart() {
 function cartItemClickListener(event) {
   const li = event.target;
   li.remove();
-
-  // 🔥
   saveOnLocalStorage();
   sumAllPrices();
   updateCartItemsCount();
@@ -98,11 +96,12 @@ function createCartItemElement({ sku, name, salePrice, imageSource }) {
 
 // Adiciona item ao carrinho
 async function addProductToCart(product) {
+  console.log(product);
   const itemData = await fetchItem(product);
   const { id: sku, title: name, price: salePrice, thumbnail: imageSource } = itemData;
   const chartItem = createCartItemElement({ sku, name, salePrice, imageSource });
   cartItems.appendChild(chartItem);
-  
+  sumAllPrices();
   saveOnLocalStorage(); // 🔥
   updateCartItemsCount();
 }
@@ -159,6 +158,12 @@ async function searchNewProducts() {
   });
 }
 
+function recoveryLocalStorage() {
+  const recovered = JSON.parse(getSavedCartItems());
+  console.log(recovered);
+  if (recovered) recovered.forEach((sku) => addProductToCart(sku));
+}
+
 window.onload = async () => { 
   searchProducts('maranta');
   onLoadInfo();
@@ -166,4 +171,5 @@ window.onload = async () => {
   emptyCart();
   totalItem();
   searchNewProducts();
+  recoveryLocalStorage();
 };
