@@ -1,8 +1,10 @@
-// const shoppingCartBtn = document.querySelector('#shopping_cart');m
 const cartItems = document.querySelector('.cart__items');
 const sectionItems = document.querySelector('.items');
 
-// const form = document.querySelector('#search_new_product');
+function saveOnLocalStorage() {
+  const cart = Array.from(cartItems.children).map((element) => element.id);
+  saveCartItems(cart); 
+}
 
 function onLoadInfo() {
   const pageLoad = document.querySelector('.items');
@@ -36,23 +38,30 @@ function updateCartItemsCount() {
   novo.innerText = `${itemCount}`;
 }
 
+// Esvazia o carrinho completamente
 function emptyCart() {
   const emptyButton = document.querySelector('.empty-cart');
   emptyButton.addEventListener('click', () => {
     cartItems.innerHTML = '';
+    localStorage.clear(); // 🔥
+    saveCartItems(cartItems.innerHTML);
     sumAllPrices();
     updateCartItemsCount();
   });
 }
 
+// Remove item unitário do carrinho
 function cartItemClickListener(event) {
   const li = event.target;
   li.remove();
+
+  // 🔥
+  saveOnLocalStorage();
   sumAllPrices();
   updateCartItemsCount();
 }
 
-// cria os cards dos produtos
+// Cria os cards dos produtos
 function createCustomElement(element, className, innerText) {
   const e = document.createElement(element);
   e.className = className;
@@ -74,10 +83,11 @@ function createProductImageElement(imageSource) {
   return container;
 }
 
-function createCartItemElement({ name, salePrice, imageSource }) {
+// Cria o item do carrinho
+function createCartItemElement({ sku, name, salePrice, imageSource }) {
   const li = document.createElement('li');
   const p = document.createElement('p');
-  
+  li.id = `${sku}`;
   li.className = 'cart__item';
   li.appendChild(p);
   p.innerText = `${name} | PRICE: $${salePrice}`;
@@ -86,11 +96,14 @@ function createCartItemElement({ name, salePrice, imageSource }) {
   return li;
 }
 
-async function addProductToCart(productID) {
-  const itemData = await fetchItem(productID);
+// Adiciona item ao carrinho
+async function addProductToCart(product) {
+  const itemData = await fetchItem(product);
   const { id: sku, title: name, price: salePrice, thumbnail: imageSource } = itemData;
   const chartItem = createCartItemElement({ sku, name, salePrice, imageSource });
   cartItems.appendChild(chartItem);
+  
+  saveOnLocalStorage(); // 🔥
   updateCartItemsCount();
 }
 
@@ -128,7 +141,7 @@ async function searchProducts(product) {
   load.remove();
 }
 
-function searchNewProducts() {
+async function searchNewProducts() {
   const form = document.querySelector('#search_new_product');
   const campo = document.getElementById('search_item');
   const newSearch = document.getElementById('search');
