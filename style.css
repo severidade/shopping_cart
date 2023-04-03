@@ -71,7 +71,7 @@ h1 {
 }
 
 #shopping_cart > p {
-  text-indent: -1000px;
+  text-indent: -3000px;
 }
 
 #shopping_cart > span {
@@ -88,6 +88,10 @@ h1 {
   border-radius: 100%;
   font-weight: 700;
   color: white;
+}
+
+#shopping_cart > span.non-empty {
+  background-color: red;
 }
 
 #cart {

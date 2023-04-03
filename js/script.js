@@ -36,6 +36,12 @@ function updateCartItemsCount() {
   const itemCount = cartItems.children.length;
   const novo = document.querySelector('#shopping_cart > span');
   novo.innerText = `${itemCount}`;
+  
+  if (itemCount > 0) {
+    novo.classList.add('non-empty');
+  } else {
+    novo.classList.remove('non-empty');
+  }
 }
 
 // Esvazia o carrinho completamente
