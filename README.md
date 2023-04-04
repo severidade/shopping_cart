@@ -5,8 +5,6 @@ Esta página, desenvolvida em HTML, CSS e JavaScript, simula um comércio eletr�
 
 [Clique aqui](https://shopping-cart-severidade.vercel.app/) para verificar a versão final do projeto em seu navegador.
 
-OBS: Este projeto foi desenvolvido na [Trybe](https://www.betrybe.com/) dentro do módulo de Fundamentos do Desenvolvimento Web.
-
 ## 🤹 Habilidades
 
   * Conhecimentos em programação assíncrona e manipulação de dados em formato JSON.
